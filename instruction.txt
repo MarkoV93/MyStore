@@ -1,0 +1,5 @@
+1.import database from Mystore/database/mystore.sql
+2.edit hibernate.cnf.xml ,set your name and pusswort for connection to DB
+3.change path to hibernate.cnf.xml in file src.com.markoproject.util.Set your puth to hibernate.cnf.xml in 
+ File f = new File("(your path)\\MyStore\\src\\main\\java\\hibernate.cfg.xml"); likeC:\\Users\\Marko\\Documents\\NetBeansProjects\\MyStore\\src\\main\\java\\hibernate.cfg.xml
+4.set your puth to project  in src/main/resources/log4j.properties 
