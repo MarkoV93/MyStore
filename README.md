@@ -58,6 +58,7 @@ which send data to the REST controllers by JSON.
 	
 	4.	Categories
 Admin can see all categories, change their names, add a new category .This is realized by the ajax functions in categories.js which send data to the REST controllers by JSON.
+	
 	5.	Products
 Admin can see all products, change their name, add a new product .This is realized by the ajax functions in products.js which send data to the REST controllers by JSON.
 
@@ -81,9 +82,9 @@ and views;
 
 5.javax.persistence- for mapping entity;
 
-6. commons-fileupload – for uploading image to a project folder;
+6.commons-fileupload – for uploading image to a project folder;
 
-7. org.codehaus.jackson – for reading Jackson
+7.org.codehaus.jackson – for reading Jackson
 
 	Patterns
 	
