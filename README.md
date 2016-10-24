@@ -14,32 +14,48 @@ User can login on all pages. Controller for login invokes from the ajax function
 The user can find products by a part of name on all pages. After that the user can filter result by price and by cities.
 
 	4.Filter products by price and cities
-	User can filter products by price and by cities. On the home page the user can also choose a category of products.  The price filter is realized by jquery plugin "slider-range".
+	User can filter products by price and by cities. On the home page the user can also choose a category of products.  
+	The price filter is realized by jquery plugin "slider-range".
 
 	5.Viewing products
-	After clicking on a product, the user will be directed to the product page, where he can read more information about the product and add the product to the basket.
+	After clicking on a product, the user will be directed to the product page, where he can read more information about 
+	the product and add the product to the basket.
 
 	6.Adding products to the basket
-	User can add products to the basket on the  homepage, search the page and the product page. Adding product is realized by ajax function "addToBasket" in store.js.  The basket is saved in session, and if the user logs out, products are deleted from the basket.
+	User can add products to the basket on the  homepage, search the page and the product page. Adding product is realized
+	by ajax function "addToBasket" in store.js.  The basket is saved in session, and if the user logs out, products are
+	deleted from the basket.
+	
 	7.Buying products
-	The user can buy products from the basket. There he can also delete products from the basket. Deletion and buying are realized by ajax function in basket.js which sends data to controller "BasketController"  by json. If the user is not logged in, the function sends  him a warning message about the necessity to register or log in.
+	The user can buy products from the basket. There he can also delete products from the basket. Deletion and buying are 
+	realized by ajax function in basket.js which sends data to controller "BasketController"  by json. If the user is not 
+	logged in, the function sends  him a warning message about the necessity to register or log in.
 
 	8. Changing contact data and a password.
-The user can change a password, @mail, and phone number on the User page . Changing data is realized by ajax functions which sends data to controller "userController"  by json.
+The user can change a password, @mail, and phone number on the User page . Changing data is realized by ajax functions which
+sends data to controller "userController"  by json.
 
 
 
 
 	2.Admin functionality
 	
-The Admin  has 5 tabs that correspond to each class of the entity.  And in every tab admin can operate with objects of these classes. In tabs "Cities", "Categories", "Products" functionality s realized by ajax functions which send data to REST controllers. Entity REST api is not realized in other objects because after logining the user with an empty password is logged into session, for higher securityю And a model "reserves" includes a model "user".
+The Admin  has 5 tabs that correspond to each class of the entity.  And in every tab admin can operate with objects of these 
+classes. In tabs "Cities", "Categories", "Products" functionality s realized by ajax functions which send data to REST controllers. Entity REST api is not realized in other objects because after logining the user with an empty password is logged into session,
+for higher securityю And a model "reserves" includes a model "user".
 	
 	1.	Users tab
-	Admin can see all data of users and ban these users. Banning of users is realized by the ajax function "change Activity" in users.js which sends user data to the controller by JSON.
+Admin can see all data of users and ban these users. Banning of users is realized by the ajax function "change Activity"
+	in users.js which sends user data to the controller by JSON.
+	
 	2.	Reserves tab
-	Admin can see all reserves and accept them. Accepting of reserves is realized by the ajax function "acceptReserve" in reserves.js which sends user data to the controller by JSON.
+Admin can see all reserves and accept them. Accepting of reserves is realized by the ajax function 
+	"acceptReserve" in reserves.js which sends user data to the controller by JSON.
+	
 	3.	Cities
-Admin can see all cities, change their names, add a new city .This is realized by the ajax functions in cities.js which send data to the REST controllers by JSON.
+Admin can see all cities, change their names, add a new city .This is realized by the ajax functions in cities.js 
+which send data to the REST controllers by JSON.
+	
 	4.	Categories
 Admin can see all categories, change their names, add a new category .This is realized by the ajax functions in categories.js which send data to the REST controllers by JSON.
 	5.	Products
