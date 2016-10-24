@@ -14,22 +14,22 @@ User can login on all pages. Controller for login invokes from the ajax function
 The user can find products by a part of name on all pages. After that the user can filter result by price and by cities.
 
 	4.Filter products by price and cities
-	User can filter products by price and by cities. On the home page the user can also choose a category of products.  
-	The price filter is realized by jquery plugin "slider-range".
+User can filter products by price and by cities. On the home page the user can also choose a category 
+of products.The price filter is realized by jquery plugin "slider-range".
 
 	5.Viewing products
-	After clicking on a product, the user will be directed to the product page, where he can read more information about 
-	the product and add the product to the basket.
+After clicking on a product, the user will be directed to the product page, where he can read more
+information about the product and add the product to the basket.
 
 	6.Adding products to the basket
-	User can add products to the basket on the  homepage, search the page and the product page. Adding product is realized
-	by ajax function "addToBasket" in store.js.  The basket is saved in session, and if the user logs out, products are
-	deleted from the basket.
+User can add products to the basket on the  homepage, search the page and the product page. Adding
+product is realized by ajax function "addToBasket" in store.js.  The basket is saved in session, and if the user logs out, products are
+deleted from the basket.
 	
 	7.Buying products
-	The user can buy products from the basket. There he can also delete products from the basket. Deletion and buying are 
-	realized by ajax function in basket.js which sends data to controller "BasketController"  by json. If the user is not 
-	logged in, the function sends  him a warning message about the necessity to register or log in.
+The user can buy products from the basket. There he can also delete products from the basket. Deletion and buying are 
+realized by ajax function in basket.js which sends data to controller "BasketController"  by json. If the user is not 
+logged in, the function sends  him a warning message about the necessity to register or log in.
 
 	8. Changing contact data and a password.
 The user can change a password, @mail, and phone number on the User page . Changing data is realized by ajax functions which
@@ -70,27 +70,27 @@ Admin can see all products, change their name, add a new product .This is realiz
 
 	Libraries and frameworks
 
-	1.Hibernate – for connection to a database, operating with model objects and their validation;
-	2.spring mvc- for web project configuration, mapping controllers, realizing validation;
-	3.jquery and Ajax- for sending data to controllers by JSON without reloading a page, for dynamic work with data 
-	and views;
-	4.Log4j-for logging project errors and warnings;
-	5.javax.persistence- for mapping entity;
-	6. commons-fileupload – for uploading image to a project folder;
-	7. org.codehaus.jackson – for reading Jackson
+1.Hibernate – for connection to a database, operating with model objects and their validation;
+2.spring mvc- for web project configuration, mapping controllers, realizing validation;
+3.jquery and Ajax- for sending data to controllers by JSON without reloading a page, for dynamic work with data 
+and views;
+4.Log4j-for logging project errors and warnings;
+5.javax.persistence- for mapping entity;
+6. commons-fileupload – for uploading image to a project folder;
+7. org.codehaus.jackson – for reading Jackson
 
 	Patterns
 	
-	1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
+1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
 com.markoproject.dao.DaoFactory.class for returning only one object of session initialized in static field.;
 	
-	2.	Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
+2.	Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
 	
-	3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
+3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
 	
-	4.	MVC- work of a web application based on this pattern;
+4.	MVC- work of a web application based on this pattern;
 	
-	5.	Data Access Object –for work with entity;
+5.	Data Access Object –for work with entity;
 
 
 	Instruction
