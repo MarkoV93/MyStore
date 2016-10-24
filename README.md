@@ -68,6 +68,7 @@ com.markoproject.dao.DaoFactory.class for returning only one object of session i
 
 
 Instruction
+	
 	1. import database from Mystore/database/mystore.sql
 	2. edit hibernate.cnf.xml ,set your name and pussword for connection to mySQL DB
 	3. change path to hibernate.cnf.xml in file src.com.markoproject.util. Set your path to hibernate.cnf.xml in  File f = new File("(your path)\\MyStore\\src\\main\\java\\hibernate.cfg.xml");( like C:\\Users\\Marko\\Documents\\NetBeansProjects\\MyStore\\src\\main\\java\\hibernate.cfg.xml)
