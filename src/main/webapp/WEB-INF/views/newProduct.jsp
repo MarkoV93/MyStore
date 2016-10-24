@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="windows-1251"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -8,33 +8,39 @@
         <link rel="stylesheet" href='<c:url value="/resource/css/jquery-ui.css" />' type="text/css" media="screen" />      
         <script src="<c:url value="/resource/js/products.js" />"></script>
         <script src="<c:url value="/resource/js/loginActivity.js" />"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="<c:url value="/resource/js/jquery.min.js" />"></script>      
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
         <link rel="stylesheet" href='<c:url value="/resource/css/bootstrap-switch.css" />' type="text/css" media="screen" />
         <script src="<c:url value="/resource/js/bootstrap-switch.js" />"></script>
    <link rel="stylesheet" href='<c:url value="/resource/css/bootstrap.css" />' type="text/css" media="screen" />
+    <script src="<c:url value="/resource/js/bootstrap.js" />"></script>
 
-        <title>Admin Page</title>
+        <title>New product</title>
     </head>
-    <body>
-         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <body style="overflow-x:hidden">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
             <br>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div style="font-style:italic;" class="navbar-header">
+            <div class="conteiner">
+  <div style="font-style:italic;" class="navbar-header">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
                     <a style="font-size: 150%;color: #43a1f1;padding:10px" class="navbar-brand" href="http://localhost:8083/MyStore/products/all">MyStore</a>
                 </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
                 <ul class="nav navbar-nav">
                     <c:choose>
                         <c:when test="${sessionScope.user==null }">
                             <li id="p1">
 
                                 <input id="login"  type="text"> 
-                                <input id="password"  type="text"> 
+                                <input id="password"  type="password"> 
                                 <button type="submit"  class="btn btn-primary" onclick="login()">Login</button>
                             </li>
                         </c:when>    
@@ -53,7 +59,7 @@
                             </c:otherwise>
                         </c:choose>
                     </li>    
-                    <li style="left:150px">
+                    <li style="left:50%;position:fixed">
                         <form action="/MyStore/products/serch" >                    
                             <input type="hidden" value="${sessionScope.defaultCity}"  name="cityCriteria" />
                             <input  type="text"  name="serch" >
@@ -63,19 +69,22 @@
                     </li>
 
                 </ul>
-               <ul class="nav navbar-nav navbar-right" style="font-style:italic;color: #43a1f1">
+                <ul class="nav navbar-nav navbar-right" style="font-style:italic;color: #43a1f1">
                     <c:choose>
                         <c:when test="${sessionScope.user==null }">
                      <li style="right:100px" id="registration"> <a style="color: #43a1f1" href="http://localhost:8083/MyStore/registrationForm">                            registration</a></li>
                        </c:when>    
                        <c:otherwise></c:otherwise></c:choose>
-                    <li > <a style="color: #43a1f1" href="http://localhost:8083/MyStore/showBasket">                       <img alt="lenses" src="<c:url value="/resource/images/basket.png"/>" />     Basket</a></li>
-                   
+                     <c:choose>
+                        <c:when test="${sessionScope.user.adminStatus==true }"> 
+                    </c:when><c:otherwise>
+                        <li > <a id="basket" style="color: #43a1f1" href="http://localhost:8083/MyStore/showBasket">                       <img alt="product" src="<c:url value="/resource/images/basket.png"/>" />     Basket</a></li>
+                     </c:otherwise></c:choose>
                     <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
 
                 </ul>
 
-
+            </div>
             </div>
 <p style="color: green ;margin:0px" id="result_text">&#160</p>
             <p style="color: red ;margin:0px" id="warning_login">&#160</p>
@@ -109,15 +118,15 @@
         </select>
        
         <br>
-         <h3>City:</h3>
+         <h3>Category:</h3>
         <select name="selectCategory" class="form-control" id="category"  size="1">
             <option  selected >select
                 <c:forEach var="category" items="${requestScope.categories}">                      
                 <option value='{"id":"${category.id}","name":"${category.name}","activeStatus":"${category.activeStatus}"}' >${category.name}
                 </c:forEach>
         </select><br> 
-       <form method="POST" name="uploadImage" action="uploadImage${id}" enctype="multipart/form-data">
-   
+       <form method="POST" name="uploadImage" action="uploadImage" enctype="multipart/form-data">
+           <input type="hidden" id="productId" name="productId" value="">
              <h3>Please select a file to upload :</h3> <input type="file" name="file" />
     
     <br>

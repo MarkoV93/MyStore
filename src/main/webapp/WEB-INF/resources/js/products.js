@@ -72,11 +72,9 @@ var product ={}
             console.log('in success');
             var result = response.msg
             console.log(result);
-//            $("#id").text(result);
-//document.uploadImage.action="uploadImage"+msg;
-// console.log(document.uploadImage.action);
+             $("#productId").val(result);
             document.uploadImage.submit();
-            $("#result_text").text(result);
+            $("#result_text").text("product added");
         },
         error: function() {
             console.log('error');

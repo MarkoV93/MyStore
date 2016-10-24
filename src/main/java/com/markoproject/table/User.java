@@ -47,7 +47,7 @@ public class User implements Serializable{
       @Column(name="password",columnDefinition = "varchar(30)")
     private String password;
 
-      @Pattern(regexp="(^$|[0-9]{10})",message = "Please current phone.")
+      @Pattern(regexp="(^$|[0-9]{11})",message = "Please current phone.")
       @NotEmpty(message = "Please enter your phone.")
       @Column(name="phone",columnDefinition = "varchar(12)")
     private String phone;

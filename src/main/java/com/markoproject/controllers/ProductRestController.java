@@ -5,8 +5,8 @@
  */
 package com.markoproject.controllers;
 
-import com.maarkoproject.filters.checkPermissions.BedPermissionExeption;
-import com.maarkoproject.filters.checkPermissions.CheckPermissions;
+import com.markoproject.checkPermissions.BedPermissionExeption;
+import com.markoproject.checkPermissions.CheckPermissions;
 import com.markoproject.dao.CityDao;
 import com.markoproject.dao.DaoFactory;
 import com.markoproject.dao.ProductDao;
@@ -27,10 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author Marko
  */
+@RequestMapping(value = "/admin")
 @Controller
 public class ProductRestController {
 
-    @RequestMapping(value = "admin/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String getProducts(Map<String, Object> model, @RequestParam(required = false) Integer page) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
         ProductDao productDao = DaoFactory.getInstance().getProductDao();
@@ -42,7 +43,7 @@ public class ProductRestController {
         return "products";
     }
 
-    @RequestMapping(value = "admin/changeProduct", method = RequestMethod.PUT)
+    @RequestMapping(value = "/changeProduct", method = RequestMethod.PUT)
     public @ResponseBody
     String changeCity(@RequestBody Product product) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -51,15 +52,16 @@ public class ProductRestController {
 
     }
 
-    @RequestMapping(value = "admin/createProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/createProduct", method = RequestMethod.POST)
     public @ResponseBody
     String createProduct(@RequestBody Product product) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
         DaoFactory.getInstance().getProductDao().saveProduct(product);
-        return "{\"msg\":\"Product created \"}";
+    
+        return "{\"msg\":\""+DaoFactory.getInstance().getProductDao().getNewId()+" \"}";
     }
 
-    @RequestMapping(value = "admin/deleteProduct", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteProduct", method = RequestMethod.DELETE)
     public @ResponseBody
     String deleteProduct(@RequestBody Integer id) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -71,4 +73,5 @@ public class ProductRestController {
         }
 
     }
+    
 }

@@ -5,8 +5,8 @@
  */
 package com.markoproject.controllers;
 
-import com.maarkoproject.filters.checkPermissions.BedPermissionExeption;
-import com.maarkoproject.filters.checkPermissions.CheckPermissions;
+import com.markoproject.checkPermissions.BedPermissionExeption;
+import com.markoproject.checkPermissions.CheckPermissions;
 import com.markoproject.dao.CategoryDao;
 import com.markoproject.dao.DaoFactory;
 import com.markoproject.table.Category;
@@ -25,12 +25,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author Marko
+ * Rest controller for category
+ * datas is sending by json from ajax function if file "categories.js"
  */
+@RequestMapping(value = "/admin")
 @Controller
 public class CategoryRestController {
 
-    @RequestMapping(value = "admin/changeCategory", method = RequestMethod.PUT)
+    @RequestMapping(value = "changeCategory", method = RequestMethod.PUT)
     public @ResponseBody
     String bannedCategory(@RequestBody Category category) throws BedPermissionExeption  {
         CheckPermissions.chackAdminPermissions();
@@ -38,7 +40,7 @@ public class CategoryRestController {
         return "{\"msg\":\"category changed\"}";
     }
 
-    @RequestMapping(value = "admin/createCategory", method = RequestMethod.POST)
+    @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
     public @ResponseBody
     String createCategory(@RequestBody Category category) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -52,7 +54,7 @@ public class CategoryRestController {
         }
     }
 
-    @RequestMapping(value = "admin/deleteCategory", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteCategory", method = RequestMethod.DELETE)
     public @ResponseBody
     String deleteFromCity(@RequestBody Integer id) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -64,7 +66,7 @@ public class CategoryRestController {
         }
     }
 
-    @RequestMapping(value = "admin/categories", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
     public String getCategories(Map<String, Object> model) throws  BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
         CategoryDao categoryDao = DaoFactory.getInstance().getCategoryDao();

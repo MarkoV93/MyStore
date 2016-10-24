@@ -10,11 +10,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- *
- * @author Marko
+ *class for connecting to hibernate config file and 
+ * returning static initialize SessionFactory 
+ * this is realized of singltone pattern
  */
 public class HibernateUtil {
-
+  
     private static SessionFactory session;
 
     static {

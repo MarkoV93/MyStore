@@ -25,18 +25,18 @@ function login(event) {
             var result = response.msg;
            if (result == 'ok'){
                 document.getElementById("p1").innerHTML =  '  <button style="display:inline" type="submit" class="btn btn-primary " onclick="logout()">Logout</button>  <a style="display:inline;color: #43a1f1" href="http://localhost:8083/MyStore/user/${user.login}">User Pro File</a>';
-//                  document.getElementById("p2").innerHTML =  '  <button type="submit"  class="btn btn-primary " onclick="logout()">Logout</button>  <a href="http://localhost:8083/MyStore/user/${sessionScope.user.login}">User Pro File</a>';
-//            
+            
   document.getElementById('registration').style.display = 'none';
 
-
+ $("#warning_login").text("");
             }else if(result == 'okAdmin'){
                 document.getElementById("p1").innerHTML =  '  <button style="display:inline" type="submit" class="btn btn-primary " onclick="logout()">Logout</button>  <a style="display:inline;color: #43a1f1" href="http://localhost:8083/MyStore/user/${sessionScope}user.login}">User Pro File</a><a style="display:inline;color: #43a1f1" href="http://localhost:8083/MyStore/admin/users">Admin page</a>';
-//            document.getElementById("p2").innerHTML =  '  <button type="submit"  class="btn btn-primary " onclick="logout()">Logout</button>  <a href="http://localhost:8083/MyStore/user/${sessionScope.user.login}">User Pro File</a>  <a href="http://localhost:8083/MyStore/admin/users">Admin page</a>';
-//          
+ $("#warning_login").text("");         
+ document.getElementById('basket').style.display = 'none';
   document.getElementById('registration').style.display = 'none';
             }else{
             $("#warning_login").text(result);
+             $("#result_text").text("");
         }
         }
     });
@@ -51,9 +51,6 @@ function logout(event) {
                 mimeType: 'application/json',
        
         success: function (response) {
-//            var result = response.msg;
-//          document.getElementById("p1").innerHTML =  ' <input id="login"  type="text"> <input id="password"  type="text"> <button type="submit"  class="btn btn-primary" onclick="login()">Login</button>';
-//            $("#warning_login").text(result);
  window.location.replace('/MyStore/products/all');
   },
         error: function(response) {

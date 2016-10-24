@@ -10,37 +10,42 @@
 <html>
     <head>
      
-        <link rel="stylesheet" href='<c:url value="/resource/css/shop-homepage.css" />' type="text/css" media="screen" />
-        <link rel="stylesheet" href='<c:url value="/resource/css/jquery-ui.css" />' type="text/css" media="screen" />      
+        <link rel="stylesheet" href='<c:url value="/resource/css/shop-homepage.css" />' type="text/css" media="screen" /> 
         <script src="<c:url value="/resource/js/adminPage.js" />"></script>
         <script src="<c:url value="/resource/js/loginActivity.js" />"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="<c:url value="/resource/js/jquery.min.js" />"></script>      
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
         <link rel="stylesheet" href='<c:url value="/resource/css/bootstrap-switch.css" />' type="text/css" media="screen" />
         <script src="<c:url value="/resource/js/bootstrap-switch.js" />"></script>
    <link rel="stylesheet" href='<c:url value="/resource/css/bootstrap.css" />' type="text/css" media="screen" />
+    <script src="<c:url value="/resource/js/bootstrap.js" />"></script>
 
-        <title>Admin Page</title>
+        <title>Users</title>
     </head>
-    <body>
-         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+     <body style="overflow-x:hidden">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
             <br>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div style="font-style:italic;" class="navbar-header">
+            <div class="conteiner">
+  <div style="font-style:italic;" class="navbar-header">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
                     <a style="font-size: 150%;color: #43a1f1;padding:10px" class="navbar-brand" href="http://localhost:8083/MyStore/products/all">MyStore</a>
                 </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
                 <ul class="nav navbar-nav">
                     <c:choose>
                         <c:when test="${sessionScope.user==null }">
                             <li id="p1">
 
                                 <input id="login"  type="text"> 
-                                <input id="password"  type="text"> 
+                                <input id="password"  type="password"> 
                                 <button type="submit"  class="btn btn-primary" onclick="login()">Login</button>
                             </li>
                         </c:when>    
@@ -59,7 +64,7 @@
                             </c:otherwise>
                         </c:choose>
                     </li>    
-                    <li style="left:150px">
+                    <li style="left:50%;position:fixed">
                         <form action="/MyStore/products/serch" >                    
                             <input type="hidden" value="${sessionScope.defaultCity}"  name="cityCriteria" />
                             <input  type="text"  name="serch" >
@@ -75,13 +80,16 @@
                      <li style="right:100px" id="registration"> <a style="color: #43a1f1" href="http://localhost:8083/MyStore/registrationForm">                            registration</a></li>
                        </c:when>    
                        <c:otherwise></c:otherwise></c:choose>
-                    <li > <a style="color: #43a1f1" href="http://localhost:8083/MyStore/showBasket">                       <img alt="lenses" src="<c:url value="/resource/images/basket.png"/>" />     Basket</a></li>
-                   
+                     <c:choose>
+                        <c:when test="${sessionScope.user.adminStatus==true }"> 
+                    </c:when><c:otherwise>
+                        <li > <a id="basket" style="color: #43a1f1" href="http://localhost:8083/MyStore/showBasket">                       <img alt="lenses" src="<c:url value="/resource/images/basket.png"/>" />     Basket</a></li>
+                     </c:otherwise></c:choose>
                     <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
 
                 </ul>
 
-
+            </div>
             </div>
 <p style="color: green ;margin:0px" id="result_text">&#160</p>
             <p style="color: red ;margin:0px" id="warning_login">&#160</p>
@@ -121,10 +129,10 @@
                 <td>     ${notAdmin.email} </td>
                 <c:choose>
                     <c:when test="${notAdmin.activeStatus }">
-                        <td> <input id="TheCheckBox" type="checkbox" data-off-text="banned" data-on-color="success" data-off-color="danger" data-on-text="not banned" data-id="${notAdmin.id}" checked class="bannedUserClass"></td> 
+                        <td> <input id="TheCheckBox" type="checkbox" data-off-text="banned" data-on-color="success" data-off-color="danger" data-on-text="not banned" data-id="${notAdmin.id}" data-name="${notAdmin.name}" data-activeStatus="${notAdmin.activeStatus}" data-email="${notAdmin.email}" data-login="${notAdmin.login}" data-password="${notAdmin.password}" data-phone="${notAdmin.phone}" data-surname="${notAdmin.surname}" checked class="bannedUserClass"></td> 
                         </c:when>    
                         <c:otherwise>
-                        <td><input id="TheCheckBox" type="checkbox" data-off-text="banned" data-on-text="not banned" data-on-color="success" data-off-color="danger" data-id="${notAdmin.id}" class="bannedUserClass"></td>
+                        <td><input id="TheCheckBox" type="checkbox" data-off-text="banned" data-on-text="not banned" data-on-color="success" data-off-color="danger" data-id="${notAdmin.id}" data-name="${notAdmin.name}" data-activeStatus="${notAdmin.activeStatus}" data-email="${notAdmin.email}" data-login="${notAdmin.login}" data-password="${notAdmin.password}" data-phone="${notAdmin.phone}" data-surname="${notAdmin.surname}" class="bannedUserClass"></td>
                         </c:otherwise>
                     </c:choose>
 
@@ -138,7 +146,7 @@
                 <c:otherwise>
 
                    <c:forEach var="i" begin="0" end="${requestScope.pages}">
-            <form action="${requestScope.path}" method="get">
+            <form action="users" method="get">
                 <button type="submit" class="button" name="page" value="${i}" >${i}</button>
 
             </form>
@@ -155,7 +163,7 @@
             console.log(users);
             for (var i = 0; i < users.length; i++) {
                 console.log(users[i]);
-                users[i].onchange = doAjax;
+                users[i].onchange = changeActivity;
             }
 
         </script>

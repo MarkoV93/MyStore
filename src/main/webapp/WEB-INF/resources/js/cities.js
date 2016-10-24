@@ -17,6 +17,7 @@ function changeActivity(event) {
             console.log('in success');
             var result = response.msg
             $("#result_text").text(result);
+             $("#warning_login").text("");
         }
 
     });
@@ -45,6 +46,7 @@ function changeName(event) {
             console.log('in success');
             var result = response.msg
             $("#result_text").text(result);
+                  $("#warning_login").text("");
         }
 
     });
@@ -73,6 +75,7 @@ function addCity(event) {
                 window.location.replace('/MyStore/admin/cities');
             else
                 $("#warning_login").text(response.msg);
+               $("#result_text").text("");
 
         }
 
@@ -99,9 +102,11 @@ function deleteCity(event) {
                 elem.parentNode.removeChild(elem);
                 var result = "city deleted";
                 $("#result_text").text(result);
+                      $("#warning_login").text("");
             } else  {
                 var result = response.msg;
                 $("#warning_login").text(result);
+                 $("#result_text").text("");
             }
 
         }

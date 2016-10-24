@@ -23,57 +23,56 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  *
- * @author Marko
+ * This is controller with methods for showing, searching and adding to basket products
  */
 @Controller
 @SessionAttributes({"categories", "cityes", "defaultCity", "minFilter", "maxFilter"})
 @RequestMapping(value = "/products")
-public class ProductController {
+public class StoreProductsController {
 
+    //this method for loading home page with products by pages, with cities and categories
+      @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String getAllProducts(Map<String, Object> model, @RequestParam(required = false) String message, @RequestParam(required = false) String priceCriteria, @RequestParam(required = false) Integer page) {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        List<Category> categories = daoFactory.getCategoryDao().getActivCategories();
+        List<City> cityes = daoFactory.getCityDao().getActivCities();
+        List<Product> products = daoFactory.getProductDao().getProducts(null, page, priceCriteria, null, true);
+        model.put("categories", categories);//put in session categories
+        model.put("cityes", cityes);//put in session cities
+        model.put("products", products);//put in response products
+        model.put("path", "All");//put in response puch all for pagging buttons.When user click on pagging button , than  invoke mthod  "getProductsByCategory" with category "All"
+        model.put("message", message);//message if another  method redirect on home page and set message into reguest
+        model.put("defaultCity", "all");//set defult velues if filter
+        model.put("minFilter", "0");
+        model.put("maxFilter", "3000");
+        int pages = daoFactory.getProductDao().getPagesOfProducts(null, priceCriteria, null, true);    
+    //    model.put("page", page);
+        model.put("pages", pages);
+        return "store";
+    }
+     //this method for loading home page with products are one of the categories on pages with filtering by cities and price
     @RequestMapping(value = "/{category}", method = RequestMethod.GET)
     public String getProductsByCategory(@PathVariable("category") String name, Map<String, Object> model, @RequestParam(required = false) String cityCriteria, @RequestParam(required = false) String priceCriteria, @RequestParam(required = false) Integer page) {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        model.put("defaultCity", cityCriteria);
-        if (priceCriteria != null) {
+        model.put("defaultCity", cityCriteria);//set city in request in which the filtered result
+        if (priceCriteria != null) {//set price if it not null in request in which the filtered result
             String[] values = priceCriteria.split("\\|");
             model.put("minFilter", Integer.valueOf(values[0]));
             model.put("maxFilter", Integer.valueOf(values[1]));
         }
         City city = daoFactory.getCityDao().getCity(cityCriteria);
         Category category = daoFactory.getCategoryDao().getCategoryByName(name);
-        List<Product> products = daoFactory.getProductDao().getProducts(category, page, priceCriteria, city, true);
+        List<Product> products = daoFactory.getProductDao().getProducts(category, page, priceCriteria, city, true);//get active products with criterias
         model.put("products", products);
-        model.put("path", name);
-        model.put("page", page);
+        model.put("path", name);//set puth for pagging muttons
+        model.put("page", page);//set page for filter form
         int pages = daoFactory.getProductDao().getPagesOfProducts(category, priceCriteria, city, true);
         model.put("pages", pages);
         return "store";
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public String getAllProducts(Map<String, Object> model, @RequestParam(required = false) String message, @RequestParam(required = false) String priceCriteria, @RequestParam(required = false) Integer page) {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        List<Category> categories = daoFactory.getCategoryDao().getActivCategories();
-        List<City> cityes = daoFactory.getCityDao().getActivCities();
-        Category all = new Category();
-        all.setName("All");
-        categories.add(all);
-        System.out.println(categories);
-        List<Product> products = daoFactory.getProductDao().getProducts(null, page, priceCriteria, null, true);
-        model.put("categories", categories);
-        model.put("cityes", cityes);
-        model.put("products", products);
-        model.put("path", "All");
-        model.put("message", message);
-        model.put("defaultCity", "all");
-        model.put("minFilter", "0");
-        model.put("maxFilter", "3000");
-        int pages = daoFactory.getProductDao().getPagesOfProducts(null, priceCriteria, null, true);    
-        model.put("page", page);
-        model.put("pages", pages);
-        return "store";
-    }
-
+  
+//method for loading product page
     @RequestMapping(value = "/showProduct/{productId}", method = RequestMethod.GET)
     public String showProduct(@PathVariable("productId") int productId, Map<String, Object> model) {
         DaoFactory daoFactory = DaoFactory.getInstance();
@@ -82,11 +81,12 @@ public class ProductController {
         return "product";
     }
 
+    //method for finding products by  name and loading search page
     @RequestMapping(value = "/serch", method = RequestMethod.GET)
     public String serchProduct(@RequestParam(required = false) Integer page, @RequestParam(required = false) String priceCriteria, @RequestParam(required = false) String cityCriteria, @RequestParam(required = false) String serch, Map<String, Object> model)  {
         model.put("defaultCity", cityCriteria);
         if (priceCriteria != null) {
-            String[] values = priceCriteria.split("\\|");
+            String[] values = priceCriteria.split("\\|");//set price if it not null in request in which the filtered result
             model.put("minFilter", Integer.valueOf(values[0]));
             model.put("maxFilter", Integer.valueOf(values[1]));
         }
@@ -96,10 +96,10 @@ public class ProductController {
         List<Product> products = productDao.findProduct(serch, page, priceCriteria, city);
         model.put("products", products);
         model.put("serch", serch);
-        model.put("path", "serch");
+         model.put("page", page);
+        model.put("path", "serch");//set puth for pagging muttods
         int pages = daoFactory.getProductDao().getPagesOfFound(serch, priceCriteria, city);
         model.put("pages", pages);
-        System.out.println(pages + "xxx");
         return "serch";
     }
 }

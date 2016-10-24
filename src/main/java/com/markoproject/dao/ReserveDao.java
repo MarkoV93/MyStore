@@ -9,10 +9,7 @@ import com.markoproject.table.Reserve;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Marko
- */
+// interface of dao class with work methods which work  with "Reserve" objects
 public interface ReserveDao {
       public void saveReserve(Reserve reserve) ;
     public void deleteReserve(int id);

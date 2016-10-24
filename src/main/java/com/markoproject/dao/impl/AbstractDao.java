@@ -21,8 +21,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
- * @author Marko
+ * abstract class which extends alldao implements classes
  */
 public abstract class AbstractDao {
 
@@ -33,6 +32,7 @@ public abstract class AbstractDao {
     public AbstractDao() {
 
     }
+    //save or update row of table  which corresponds entity class "clazz"
 
     protected boolean saveOrUpdate(Object obj) {
         try {
@@ -55,6 +55,7 @@ public abstract class AbstractDao {
         }
     }
 
+    //delete row of table  which corresponds entity class "clazz"
     protected boolean delete(Class clazz, int id) {
         try {
             startOperation();
@@ -76,6 +77,7 @@ public abstract class AbstractDao {
             }
         }
     }
+    //get row of table  which corresponds entity class "clazz"
 
     protected Object get(Class clazz, int id) {
         Object obj = null;
@@ -96,6 +98,7 @@ public abstract class AbstractDao {
         }
         return obj;
     }
+    //delete all row of table  which corresponds entity class "clazz" and has field activestatus=true
 
     protected List getAllActive(Class clazz) {
         List objects = null;
@@ -118,6 +121,7 @@ public abstract class AbstractDao {
         }
         return objects;
     }
+    //delete all rows of table  which corresponds entity class "clazz"
 
     protected List getAll(Class clazz) {
         List objects = null;
@@ -139,6 +143,7 @@ public abstract class AbstractDao {
         }
         return objects;
     }
+    //return 10 rows of table  which corresponds entity class "clazz" and with first row on page*10 position
 
     protected List getAll(Class clazz, int page) throws SQLException {
         List objects = null;
@@ -170,7 +175,7 @@ public abstract class AbstractDao {
             startOperation();
             Criteria categoryCriteria = session.createCriteria(clazz);
             categoryCriteria.add(Restrictions.eq("name", name));
-            result =  categoryCriteria.uniqueResult();
+            result = categoryCriteria.uniqueResult();
             tx.commit();
         } catch (HibernateException e) {
             logger.error("category not found" + e.getCause());

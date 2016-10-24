@@ -17,6 +17,7 @@ function changeActivity(event) {
             console.log('in success');
             var result = response.msg
             $("#result_text").text(result);
+             $("#warning_login").text("");
         }
 
     });
@@ -45,6 +46,7 @@ function changeName(event) {
             console.log('in success');
             var result = response.msg
             $("#result_text").text(result);
+             $("#warning_login").text("");
         }
 
     });
@@ -74,6 +76,7 @@ function addCategory(event) {
                 window.location.replace('/MyStore/admin/categories');
             else
                 $("#warning_login").text(response.msg);
+              $("#result_text").text("");
 
         }
 
@@ -100,19 +103,13 @@ function deleteCategory(event) {
                 elem.parentNode.removeChild(elem);
                 var result = "category deleted";
                 $("#result_text").text(result);
+                 $("#warning_login").text("");
             } else  {
                 var result = response.msg;
                 $("#warning_login").text(result);
+                  $("#result_text").text("");
             }
 
         }
     });
 }
-//(function($) {
-//    $(document).ready(function() {
-//        $('.deleteCategory').click(function(e) {
-//            e.preventDefault();
-//            $(this).closest('tr').remove(); // или $(this).parent().parent().remove();
-//        });
-//    });
-//}(jQuery));

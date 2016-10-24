@@ -9,7 +9,7 @@ package com.markoproject.dao;
 import com.markoproject.dao.impl.*;
 /**
  *
- * @author Marko
+ * class for lazy initialize of  dao interfaces and returning them
  */
 public class DaoFactory {
     private static DaoFactory instance=new DaoFactory();

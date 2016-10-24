@@ -25,16 +25,20 @@
                
            } else{
                         $("#warning_login").text("login or register please");
+                         $("#result_text").text("");
                     }
                     }
                 });
             }
   
-     function doAjax(event) {
+     function deleteFromBasket(event) {
                 console.log(arguments);
-                var inputText = $(this).attr("data-id");
-               
-                console.log(inputText);
+                var id = $(this).attr("data-id");
+                var totalPrice = $("#totalPrice").val();
+                 var price = $(this).attr("data-price");
+                 var newPrice=(totalPrice-price).toFixed(2);
+                console.log(id,totalPrice,price);
+                
                 $.ajax({
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8;',
                     url: 'deleteFromBasket',
@@ -42,11 +46,14 @@
                     dataType: 'json',
                     contentType: 'application/json',
                             mimeType: 'application/json',
-                 data : JSON.stringify(inputText),
+                 data : JSON.stringify(id),
                     success: function (response) {
                         console.log("in success");
                          var result = response.msg;
+                          $("#totalPrice").val(newPrice);
+                           $("#total").text("Total price: "+newPrice)
                         $("#result_text").text(result);
+                         $("#warning_login").text("");
                     }
                 });
             }

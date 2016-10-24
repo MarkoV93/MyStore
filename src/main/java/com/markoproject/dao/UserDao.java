@@ -9,15 +9,12 @@ import com.markoproject.table.User;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Marko
- */
+// interface of dao class with work methods which work  with "User" objects
 public interface UserDao {
       public boolean saveUser(User user) ;
     public void deleteUser(int id) ;
     public User getUser(int id);
-    public Boolean verifyUser(String login,String password);
+    public User verifyUser(String login,String password);
     public List<User> getUsers(Integer page);
     public int getPagesOfNotAdminUsers();
  public User getUser(String login);

@@ -22,44 +22,45 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 /**
- *
- * @author Marko
+ * implementation of CategoryDao
  */
-public class CategoryDaoImpl extends AbstractDao implements CategoryDao{
+public class CategoryDaoImpl extends AbstractDao implements CategoryDao {
 
-      private static final Logger logger= LogManager.getLogger(CategoryDao.class);
-    
+    private static final Logger logger = LogManager.getLogger(CategoryDao.class);
+
     @Override
-    public boolean saveCategory(Category category)  {
-      return super.saveOrUpdate(category);
+    public boolean saveCategory(Category category) {
+        return super.saveOrUpdate(category);
     }
 
     @Override
-    public List<Category> getCategories() {     
-      List<Category> categories = super.getAll(Category.class);
+    public List<Category> getCategories() {
+        List<Category> categories = super.getAll(Category.class);
         return categories;
     }
 
     @Override
-    public Category getCategory(int id)  {
-       return (Category) super.get(Category.class, id);
-    }
-    
-    @Override
-    public boolean deleteCategory(int id) {
-      return super.delete(Category.class,id);
+    public Category getCategory(int id) {
+        return (Category) super.get(Category.class, id);
     }
 
     @Override
-    public Category getCategoryByName(String name)  {
-   
+    public boolean deleteCategory(int id) {
+        return super.delete(Category.class, id);
+    }
+
+    @Override
+    public Category getCategoryByName(String name) {
+
         return (Category) super.getByName(Category.class, name);
     }
 
     @Override
     public List<Category> getActivCategories() {
         List<Category> categories = super.getAllActive(Category.class);
+              Category all = new Category();
+        all.setName("All");
+        categories.add(all);
         return categories;
     }
-    }
-
+}

@@ -5,8 +5,8 @@
  */
 package com.markoproject.controllers;
 
-import com.maarkoproject.filters.checkPermissions.BedPermissionExeption;
-import com.maarkoproject.filters.checkPermissions.CheckPermissions;
+import com.markoproject.checkPermissions.BedPermissionExeption;
+import com.markoproject.checkPermissions.CheckPermissions;
 import com.markoproject.dao.CityDao;
 import com.markoproject.dao.DaoFactory;
 import com.markoproject.table.City;
@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
- * @author Marko
+ * Rest controller for city
+ * datas is sending by json from ajax function if file "cities.js"
  */
+@RequestMapping(value = "/admin")
 @Controller
 public class CityRestController {
 
-    @RequestMapping(value = "admin/changeCity", method = RequestMethod.PUT)
+    @RequestMapping(value = "/changeCity", method = RequestMethod.PUT)
     public @ResponseBody
     String bannedCity(@RequestBody City city) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -35,7 +37,7 @@ public class CityRestController {
 
     }
 
-    @RequestMapping(value = "admin/createCity", method = RequestMethod.POST)
+    @RequestMapping(value = "/createCity", method = RequestMethod.POST)
     public @ResponseBody
     String createCity(@RequestBody City city) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -48,7 +50,7 @@ public class CityRestController {
         }
     }
 
-    @RequestMapping(value = "admin/deleteCity", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteCity", method = RequestMethod.DELETE)
     public @ResponseBody
     String deleteCity(@RequestBody Integer id) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
@@ -60,7 +62,7 @@ public class CityRestController {
         }
     }
 
-    @RequestMapping(value = "admin/cities", method = RequestMethod.GET)
+    @RequestMapping(value = "/cities", method = RequestMethod.GET)
     public String getCities(Map<String, Object> model) throws BedPermissionExeption {
         CheckPermissions.chackAdminPermissions();
         CityDao cityDao = DaoFactory.getInstance().getCityDao();

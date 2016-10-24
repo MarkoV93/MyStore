@@ -10,10 +10,9 @@ import com.markoproject.table.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Marko
- */
+
+// interface of dao class with work methods which work  with "category" objects
+
 public interface CategoryDao {
     public boolean saveCategory(Category category) ;
       public List<Category> getCategories() ;

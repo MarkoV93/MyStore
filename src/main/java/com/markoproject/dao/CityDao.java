@@ -10,10 +10,7 @@ import com.markoproject.table.Product;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- *
- * @author Marko
- */
+// interface of dao class with work methods which work  with "City" objects
 public interface CityDao {
      public boolean saveCity(City city) ;
       public List<City> getCities() ;

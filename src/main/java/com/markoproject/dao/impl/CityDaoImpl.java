@@ -22,19 +22,17 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Marko
+ * implementation of CategoryDao
  */
 public class CityDaoImpl extends AbstractDao implements CityDao {
- private static final Logger logger= LogManager.getLogger(CityDao.class);
 
+    private static final Logger logger = LogManager.getLogger(CityDao.class);
 
-
-    public boolean saveCity(City city)  {
-       return super.saveOrUpdate(city);
+    public boolean saveCity(City city) {
+        return super.saveOrUpdate(city);
     }
 
-
-    public List<City> getCities()  {
+    public List<City> getCities() {
         List<City> citys = super.getAll(City.class);
         return citys;
 
@@ -42,18 +40,17 @@ public class CityDaoImpl extends AbstractDao implements CityDao {
 
     // @Override
     public City getCity(String cityCriteria) {
-      
+
         return (City) super.getByName(City.class, cityCriteria);
     }
-    
 
-    public boolean deleteCity(int id )  {
-     return  super.delete(City.class,id);
+    public boolean deleteCity(int id) {
+        return super.delete(City.class, id);
     }
 
     @Override
-    public List<City> getActivCities()  {
-       List<City> cities = super.getAllActive(City.class);
+    public List<City> getActivCities() {
+        List<City> cities = super.getAllActive(City.class);
         return cities;
     }
 

@@ -21,7 +21,7 @@ function addToBasket(event) {
             console.log('in success');
             var result = data.name + ' was added';
             $("#result_text").text(result);
-             $("#warning_text").text("");
+             $("#warning_login").text("");
         }
 
     });

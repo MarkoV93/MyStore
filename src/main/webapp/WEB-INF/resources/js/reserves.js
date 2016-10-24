@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- function doAjax(event) {
+ function acceptReserve(event) {
             console.log(arguments);
             var reserve = $(this).attr("data-id");
   var activeStatus=$(this).prop("checked");

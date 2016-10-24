@@ -24,9 +24,10 @@ function changePassword() {
             var result = response.msg; if (result == 'ok'){
                
                  $("#result_text").text("resultpassword changed");
-               
+                $("#warning_login").text("");
            } else{
                         $("#warning_login").text("not current old password");
+                         $("#result_text").text("");
                     }
                     }
                 });
@@ -35,9 +36,8 @@ function changePassword() {
 
 function changePhone() {
     console.log("start");
-    var phone = {
-        phone: $("#phone").val(),
-    }
+    var phone = $("#phone").val();
+   
 
     $.ajax({
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8;',
@@ -53,19 +53,19 @@ function changePhone() {
 
             var result = response.msg;
             $("#result_text").text(result);
+             $("#warning_login").text("");
         },
         error: function (textStatus, errorThrown) {
            var result="write current phone";
-            $("#warning_text").text(result);
+            $("#warning_login").text(result);
+             $("#result_text").text("");
         }
     });
 }
 
 function changeEmail() {
     console.log("start");
-    var email = {
-        email: $("#email").val(),
-    }
+    var email = $("#email").val();
 
     $.ajax({
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8;',
@@ -81,10 +81,12 @@ function changeEmail() {
   
             var result = response.msg;
             $("#result_text").text(result);
+             $("#warning_login").text("");
         },
         error: function (textStatus, errorThrown) {
            var result="write current @mail";
-            $("#warning_text").text(result);
+            $("#warning_login").text(result);
+             $("#result_text").text("");
         }
 
     });

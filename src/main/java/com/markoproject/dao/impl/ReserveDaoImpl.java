@@ -21,7 +21,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Marko
+ * implementation of ReserveDao
  */
 public class ReserveDaoImpl extends AbstractDao implements ReserveDao{
 
@@ -47,7 +47,7 @@ public class ReserveDaoImpl extends AbstractDao implements ReserveDao{
        List<Reserve> reserves=super.getAll(Reserve.class);
        return reserves;
     }
-
+//method for for returning not accepted reserves by pages
     @Override
     public List<Reserve> getActiveReserves(Integer page) {
          if(page==null) page=0;
@@ -56,7 +56,7 @@ public class ReserveDaoImpl extends AbstractDao implements ReserveDao{
         try {
             session = HibernateUtil.getSessionFactory().openSession();
            Criteria reserveCriteria = session.createCriteria(Reserve.class);
-           reserveCriteria.setFirstResult(page * 10).setMaxResults(10);
+           reserveCriteria.setFirstResult(page * 10).setMaxResults(10);//added criteria for returning 10 reserves beginning from page*10 reserve
             reserveCriteria.add(Restrictions.eq("accepted",Boolean.FALSE));
            result = reserveCriteria.list();  
         } catch (HibernateException e) {
@@ -72,7 +72,7 @@ public class ReserveDaoImpl extends AbstractDao implements ReserveDao{
         }
         return result;
     }
-
+//method for returning count of pages with not accepted reserves with 10 reserves on page
     @Override
     public int getPagesOfActiveReserves() {
          int count=0;
@@ -80,16 +80,11 @@ public class ReserveDaoImpl extends AbstractDao implements ReserveDao{
           Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-           Criteria reserveCriteria = session.createCriteria(Reserve.class);
-         
+           Criteria reserveCriteria = session.createCriteria(Reserve.class);        
             reserveCriteria.add(Restrictions.eq("accepted", false));
- 
            count =((Number)reserveCriteria.setProjection(Projections.rowCount()).uniqueResult()).intValue();
-           if(count==0){
-               count++;
-           }
             pages = count / 10;
-        if (count % 10 == 0) {
+        if ((count % 10 == 0)&&(count!=0)) {
             pages--;
         }
         } catch (HibernateException e) {
