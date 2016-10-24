@@ -72,7 +72,8 @@ Admin can see all products, change their name, add a new product .This is realiz
 
 	1.Hibernate – for connection to a database, operating with model objects and their validation;
 	2.spring mvc- for web project configuration, mapping controllers, realizing validation;
-	3.jquery and Ajax- for sending data to controllers by JSON without reloading a page, for dynamic work with data and views;
+	3.jquery and Ajax- for sending data to controllers by JSON without reloading a page, for dynamic work with data 
+	and views;
 	4.Log4j-for logging project errors and warnings;
 	5.javax.persistence- for mapping entity;
 	6. commons-fileupload – for uploading image to a project folder;
