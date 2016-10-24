@@ -81,12 +81,16 @@ Admin can see all products, change their name, add a new product .This is realiz
 
 	Patterns
 	
-		1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
+	1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
 com.markoproject.dao.DaoFactory.class for returning only one object of session initialized in static field.;
-		2.	Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
-		3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
-		4.	MVC- work of a web application based on this pattern;
-		5.	Data Access Object –for work with entity;
+	
+	2.	Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
+	
+	3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
+	
+	4.	MVC- work of a web application based on this pattern;
+	
+	5.	Data Access Object –for work with entity;
 
 
 	Instruction
