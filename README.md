@@ -57,6 +57,7 @@ Libraries and frameworks
 5.javax.persistence- for mapping entity;
 6. commons-fileupload – for uploading image to a project folder;
 7. org.codehaus.jackson – for reading Jackson
+
 Patterns
 1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
 com.markoproject.dao.DaoFactory.class for returning only one object of session initialized in static field.;
@@ -64,14 +65,14 @@ com.markoproject.dao.DaoFactory.class for returning only one object of session i
 3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
 4.	MVC- work of a web application based on this pattern;
 5.	Data Access Object –for work with entity;
-Time performance
-The task was completed within 3 weeks, 6-9 hours a day. But due to the fact that I have no experience with frameworks such as hibernate and spring mvc . I wrote a letter to your HR saying that I wish to learn frameworks first and after that to begin perform tasks. I was responded about the possible extension of the deadline. And that's why it took me 2,5 weeks to learn frameworks.
+
+
 Instruction
-1. import database from Mystore/database/mystore.sql
-2. edit hibernate.cnf.xml ,set your name and pussword for connection to mySQL DB
-3. change path to hibernate.cnf.xml in file src.com.markoproject.util. Set your path to hibernate.cnf.xml in  File f = new File("(your path)\\MyStore\\src\\main\\java\\hibernate.cfg.xml");( like C:\\Users\\Marko\\Documents\\NetBeansProjects\\MyStore\\src\\main\\java\\hibernate.cfg.xml)
-4. set your path to project  in src/main/resources/log4j.properties
-5. set your path to project  in сдфіі otherAdminFuncController in method “UploadImage”
-6. change tomCat's port on 8083;
+	1. import database from Mystore/database/mystore.sql
+	2. edit hibernate.cnf.xml ,set your name and pussword for connection to mySQL DB
+	3. change path to hibernate.cnf.xml in file src.com.markoproject.util. Set your path to hibernate.cnf.xml in  File f = new File("(your path)\\MyStore\\src\\main\\java\\hibernate.cfg.xml");( like C:\\Users\\Marko\\Documents\\NetBeansProjects\\MyStore\\src\\main\\java\\hibernate.cfg.xml)
+	4. set your path to project  in src/main/resources/log4j.properties
+	5. set your path to project  in сдфіі otherAdminFuncController in method “UploadImage”
+	6. change tomCat's port on 8083;
 
 
