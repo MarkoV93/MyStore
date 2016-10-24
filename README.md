@@ -71,26 +71,32 @@ Admin can see all products, change their name, add a new product .This is realiz
 	Libraries and frameworks
 
 1.Hibernate – for connection to a database, operating with model objects and their validation;
+
 2.spring mvc- for web project configuration, mapping controllers, realizing validation;
+
 3.jquery and Ajax- for sending data to controllers by JSON without reloading a page, for dynamic work with data 
 and views;
+
 4.Log4j-for logging project errors and warnings;
+
 5.javax.persistence- for mapping entity;
+
 6. commons-fileupload – for uploading image to a project folder;
+
 7. org.codehaus.jackson – for reading Jackson
 
 	Patterns
 	
-1.	singleton - in com.markoproject.util.HibernateUtil.class and in 
+	1.singleton - in com.markoproject.util.HibernateUtil.class and in 
 com.markoproject.dao.DaoFactory.class for returning only one object of session initialized in static field.;
 	
-2.	Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
+	2.Factory method- in com.markoproject.dao.DaoFactory.class for returning model's dao classes;
 	
-3.	Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
+	3.Lazy initialization- in com.markoproject.dao.DaoFactory.class for  initialization model's dao classes;
 	
-4.	MVC- work of a web application based on this pattern;
+	4.MVC- work of a web application based on this pattern;
 	
-5.	Data Access Object –for work with entity;
+	5.Data Access Object –for work with entity;
 
 
 	Instruction
