@@ -119,7 +119,7 @@ public class OtherAdminFuncController {
     
             try {
                 src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-                File destination = new File("C:/Users/Marko/Documents/NetBeansProjects/MyStore/src/main/webapp/WEB-INF/resources/images/" + productId + ".png");// something like C:/Users/Marko/Desktop/SpringFileUpload/Id.png C:\Users\Marko\Desktop
+                File destination = new File("D:/Marko/projects/GitHub/MyStoresrc/main/webapp/WEB-INF/resources/images/" + productId + ".png");// something like C:/Users/Marko/Desktop/SpringFileUpload/Id.png C:\Users\Marko\Desktop
                 ImageIO.write(src, "png", destination);
             } catch (IOException ex) {
                 logger.error("file doesn't upload" + ex.getCause());

@@ -20,8 +20,7 @@ public class HibernateUtil {
 
     static {
         try {
-            File f = new File("C:\\Users\\Marko\\Documents\\NetBeansProjects\\MyStore\\src\\main\\java\\hibernate.cfg.xml");
-            session = new Configuration().configure(f).buildSessionFactory();
+            session = new Configuration().configure().buildSessionFactory();
         } catch (Throwable e) {
            e.printStackTrace();
         }
